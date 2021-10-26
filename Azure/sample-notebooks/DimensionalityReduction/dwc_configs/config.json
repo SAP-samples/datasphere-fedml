@@ -1,0 +1,13 @@
+{
+    "address": "<insert your DWC address here>",
+    "port": "<insert port here>",
+    "user": "<insert your user here>",
+    "password": "<insert password here>",
+    "schema": "<insert your schema here>",
+    "encrypt": "true",
+    "sslValidateCertificate": "false",
+    "disableCloudRedirect": "true",
+    "communicationTimeout": "0",
+    "autocommit": "true",
+    "sslUseDefaultTrustStore": "true"
+}
