@@ -1,15 +1,13 @@
-# FedML
+# FedML - Federated Machine Learning
 
 ## Description 
  
 <br>
 
-The SAP Federated ML Python libraries (FedML) applies the Data Federation architecture of SAP DataWarehouse Cloud for intelligently sourcing data for Machine Learning experiments done at the Hyperscalers thereby removing the need for replicating or moving data. 
-By abstracting the Data Connection, Data load, and Model training (with flexibility and provision for user provided training scripts) for Hyperscaler Machine learning processes , the FedML library  provides end to end integration with few lines of code .
+The SAP Federated Machine Learning Python libraries (FedML) applies the Data Federation architecture of SAP DataWarehouse Cloud for sourcing the data in real time for Machine Learning experiments done at the Hyperscalers thereby removing the need for replicating or moving data. 
+By abstracting the Data Connection, Data load, and Model training (with flexibility and provision for user provided training scripts) for Hyperscaler Machine learning processes , the FedML library  provides end to end integration with few lines of code . This repo contains sample code to show how to use FedML libraries.
 
 This project is at an early validation phase and is not meant to be used productively. 
- 
-<br>
 
 ## Solution Architecture
  
@@ -59,7 +57,7 @@ None
 ## How to obtain support 
 
 This project is provided "as-is" with no expectation for major changes or support. <br>
-[Create an issue](/issues) in this repository if you find a bug or have questions about the content. <br>
+[Create an issue](https://github.com/SAP-samples/dwc-fedml/issues) in this repository if you find a bug or have questions about the content. <br>
 For additional support, [ask a question](https://answers.sap.com/questions/ask.html) in SAP Community. 
    <br><br>
 ## To-Do (upcoming changes) 
