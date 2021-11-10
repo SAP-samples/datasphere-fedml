@@ -33,10 +33,11 @@ feature_columns_dtype = {
 label_column_dtype = {'Total_Profit': "float64"}
 
 ############################## Helper Functions ##############################
-def get_data(table_name,table_size):
+def get_data(table_name):
     db = DbConnection()
     start_time = time.time()
-    data = db.get_data_with_headers(table_name=table_name, size=float(table_size))
+    query='select * from '+config['schema']+'.'+table_name
+    data = db.execute_query(query)
     print("--- %s seconds ---" % (time.time() - start_time))
     data = pd.DataFrame(data[0], columns=data[1])
     data = data[['Units_Sold', 'Unit_Price', 'Unit_Cost', 'Total_Revenue', 'Total_Cost', 'Total_Profit']]
@@ -56,12 +57,11 @@ parser = argparse.ArgumentParser()
 # AzureML specific arguments. Defaults are set in the environment variables.
 parser.add_argument('--model_file_name', type=str)
 parser.add_argument('--table_name', type=str)
-parser.add_argument('--table_size', type=str)
 
 args = parser.parse_args()
 
 print('\n\n********* Handling Data - Splitting into Train and Test *********n\n')
-data = get_data(args.table_name, args.table_size) #getting data from DWC
+data = get_data(args.table_name) #getting data from DWC
 y = data[label_column]
 
 data.drop(label_column, axis=1, inplace=True)
