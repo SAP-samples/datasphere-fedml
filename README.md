@@ -1,3 +1,5 @@
+[![REUSE status](https://api.reuse.software/badge/GitHub.com/SAP-samples/dwc-fedml)](https://api.reuse.software/info/GitHub.com/SAP-samples/dwc-fedml)
+
 # FedML: Federated Machine Learning
 
 ## Description 
