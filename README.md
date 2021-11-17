@@ -42,7 +42,7 @@ This project is at an early validation phase and is not meant to be used product
 
 ## Configuration 
 
-- For AWS FedML library specific pre-requisites, configuration and documentation, [please refer here](AWS/fedml_aws.md) <br>
+- For AWS FedML library specific pre-requisites, configuration and documentation, [please refer here](AWS/readme.md) <br>
 - For GCP FedML library specific pre-requisites, configuration and documentation, [please refer here](GCP/fedml_gcp.md)<br>
 - For Azure FedML library specific pre-requisites, configuration and documentation, [please refer here](Azure/readme.md) <br><br>
 
