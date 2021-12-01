@@ -18,6 +18,7 @@ label_column = 'total_profit'
 def get_data(table_name):
     db = DbConnection()
     query='select * from '+config['schema']+'.'+table_name
+    #The DbConnection.execute_query() method queries the table/view from SAP Data Warehouse Cloud.
     data = db.execute_query(query)
     data = pd.DataFrame(data[0], columns=data[1])
     data=data[['units_sold', 'unit_price', 'unit_cost','total_revenue', 'total_cost','total_profit']]
