@@ -31,7 +31,7 @@ Refer the following steps when completing the Discovery Center mission:
     ![Adding certificates](../images/certificates.png)
 
 
-6.	Complete all the steps till step 4 of the “Configure SAP DataWarehouse Cloud to Federate Data” card. The connection between Amazon Athena and SAP DataWarehouse Cloud is established.
+6.	Complete all the steps till (not including) step 4 of the “Configure SAP DataWarehouse Cloud to Federate Data” card. The connection between Amazon Athena and SAP DataWarehouse Cloud is established.
 
 
 ## **Federate data from Google BigQuery**
@@ -50,7 +50,7 @@ Refer the following steps when completing the Discovery Center Mission:
     ![Adding certificates](../images/certificates.png)
 
 
-3.  Complete all steps till step 4 of the “Configure SAP Data Warehouse Cloud to Federate Data” card. The connection between Google BigQuery and SAP DataWarehouse Cloud is established.
+3.  Complete all steps till (not including) step 4 of the “Configure SAP Data Warehouse Cloud to Federate Data” card. The connection between Google BigQuery and SAP DataWarehouse Cloud is established.
 
 
 ## **Create Remote table in SAP Data Warehouse Cloud**
