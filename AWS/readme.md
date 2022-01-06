@@ -2,6 +2,13 @@
 
 DwcSagemaker class initializes the resources required for the model training, and provides methods that enable the training data to be read from SAP DWC and trains a Machine Learning model on Amazon Sagemaker.
 
+## **Prerequisites**
+- `sagemaker>=2`
+
+To update `sagemaker` module, run the following code:
+
+`!pip install --upgrade "sagemaker>=2"`
+
 ## **Constructor**
 
 `DwcSagemaker(prefix=None, bucket_name=None)`
