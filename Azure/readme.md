@@ -1,6 +1,6 @@
 # **Description**
 
-The Library initializes the resources required for the model training, enables the training data to be federated from SAP DWC in real time without duplicating the data in Azure Storage, trains a Machine Learning model and registers it. 
+The Library initializes the resources required for the model training, enables the training data to be read from SAP DWC in real time without storing it in any Azure Storage, trains a Machine Learning model and registers it. 
 
 # **Prerequisites** 
 
@@ -14,8 +14,12 @@ Create an AzureML workspace from the Azure portal (recommended) or optionally th
 
 # **Documentation**
 
-- For documentation of library classes, methods and parameters, refer [docs/fedml_azure.md](./docs/fedml_azure.md)  
-- For documentation of how to use the library, refer [sample_notebooks](sample-notebooks)
+- For documentation of library class, methods and parameters, refer [fedml_azure.md](./docs/fedml_azure.md)  
+- For documentation of how to use the library, refer [sample_notebooks](./sample_notebooks/version_2_sample_notebooks)
+
+# **Troubleshooting**
+
+The documentation for troubleshooting can be found [here](./docs/troubleshoot.md).
 
 # **Additional Information**
 
