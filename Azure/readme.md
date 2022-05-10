@@ -15,7 +15,7 @@ Create an AzureML workspace from the Azure portal (recommended) or optionally th
 # **Documentation**
 
 - For documentation of library class, methods and parameters, refer [fedml_azure.md](./docs/fedml_azure.md)  
-- For documentation of how to use the library, refer [sample_notebooks](./sample_notebooks/version_2_sample_notebooks)
+- For documentation of how to use the library, refer [sample_notebooks](./sample-notebooks/version_2_sample_notebooks)
 
 # **Troubleshooting**
 
