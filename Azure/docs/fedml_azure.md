@@ -135,7 +135,7 @@ Example1: Creation of new Environment with environment_type 'CondaPackageEnviron
                             environment_type='CondaPackageEnvironment',
                             environment_args={'name':<environment-name>, 
                                               'conda_packages':['scikit-learn'],
-                                              'pip_packages':['fedml_azure']}
+                                              'pip_wheel_files':['fedml_azure-1.0.0-py3-none-any.whl']}
                               )
  ```
 
@@ -145,7 +145,7 @@ Example1: Creation of new Environment with environment_type 'CondaPackageEnviron
                              environment_type='CondaSpecificationEnvironment',
                              environment_args={'name':<environment-name>,
                                               'file_path':'conda_dependency.yml',
-                                              'pip_packages':['fedml_azure']}
+                                              'pip_wheel_files':['fedml_azure-updated_test-py3-none-any.whl']}
                               )
   
 ```
