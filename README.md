@@ -1,3 +1,5 @@
+[![REUSE status](https://api.reuse.software/badge/GitHub.com/SAP-samples/dwc-fedml)](https://api.reuse.software/info/GitHub.com/SAP-samples/dwc-fedml)
+
 # FedML
 
 ## Description 
@@ -10,7 +12,7 @@ By abstracting the Data Connection, Data load, and Model training (with flexibil
 This project is at an early validation phase and is not meant to be used productively. 
 <br>
 
- ## What's New
+ ## What's New 
 
 Here are some high level major feature additions in Version 2.0 of FedML:
 
