@@ -3,6 +3,7 @@ dependencies:
 - scikit-learn
 - pip
 - pip:
+  - fedml-azure
   - azureml-defaults
   - pandas
   - hdbcli

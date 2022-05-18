@@ -1,6 +1,6 @@
 # **Description**
 
-The Library initializes the resources required for the model training, enables the training data to be federated from SAP DWC in real time without duplicating the data in Azure Storage, trains a Machine Learning model and registers it. 
+The FedML library applies the data federation architecture with SAP Data Warehouse Cloud for intelligently sourcing the data in real-time from data storages. The library provides functionality that enables businesses and data scientists to build, train and deploy machine learning models on hyperscalers, without the hassle of replicating or migrating the data from the original data storage.
 
 # **Prerequisites** 
 
@@ -14,9 +14,9 @@ Create an AzureML workspace from the Azure portal (recommended) or optionally th
 
 # **Documentation**
 
-- For documentation of library classes, methods and parameters, refer [docs/fedml_azure.md](./docs/fedml_azure.md)  
-- For documentation of how to use the library, refer [sample_notebooks](sample-notebooks)
+- For documentation of library class, methods and parameters, refer [fedml_azure.md](./docs/fedml_azure.md)  
+- For documentation of how to use the library, refer [sample_notebooks](./sample-notebooks)
 
-# **Additional Information**
+# **Troubleshooting**
 
-- The library has not been tested with [SGS baseline control policy- Ensure container registries are private](https://jam4.sapjam.com/articles/KvavoUCgXGlWYIUbgvcFnL)
+The documentation for troubleshooting can be found [here](./docs/troubleshoot.md). 
