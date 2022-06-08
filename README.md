@@ -9,8 +9,6 @@
 The SAP Federated ML Python libraries (FedML) applies the Data Federation architecture of SAP DataWarehouse Cloud for intelligently sourcing SAP as well as  non-SAP data for Machine Learning experiments done at the Hyperscalers thereby removing the need for replicating or moving data. 
 By abstracting the Data Connection, Data load, and Model training (with flexibility and provision for user provided training scripts), Model Deployment, and Inferencing for Hyperscaler Machine learning processes , the FedML library  provides end to end integration with few lines of code .
 
-This project is at an early validation phase and is not meant to be used productively. 
-<br>
 
  ## What's New 
 
