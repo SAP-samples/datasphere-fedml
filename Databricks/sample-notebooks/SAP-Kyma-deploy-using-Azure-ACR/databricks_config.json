@@ -1,0 +1,12 @@
+
+{
+    "DATABRICKS_URL":"<Databricks Workspace Url>",
+    "DATABRICKS_ACCESS_TOKEN":"<Databricks Personal Access Token created in the Pre-requisite section>",
+    "MODEL_URI":"<URI of the Databricks MLflow model to deploy in the form of 'runs:/{run_id}/{model_name}'>",
+    "CONTAINER_REGISTRY_TYPE":"ACR",
+    "SERVICE_PRINCIPAL_ID":"<Service Principal ID  created in the Pre-requisite section>",
+    "SERVICE_PRINCIPAL_PASSWORD":"<Service Principal Password created in the Pre-requisite section>",
+    "ACR":"<Azure Container registry login server in the form of 'mycontainerregistry.azurecr.io'>",
+    "SERVICE_NAME":"<Name of the service or deployment>",
+    "KUBECONFIG_PATH":"<File path to the kubeconfig.yaml file created in the Pre-requisite section>"
+}
