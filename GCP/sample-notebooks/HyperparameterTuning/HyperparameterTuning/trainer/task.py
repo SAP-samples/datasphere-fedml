@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 from sklearn import model_selection
 
-from trainer import metadata
 from trainer import model
 from trainer import utils
 
@@ -31,7 +30,7 @@ def _train_and_evaluate(estimator, features, labels, flags):
     logging.info("*************** Saving the model with best parameters ***************")
     final_model = estimator.best_estimator_
 
-    utils.dump_model(flags.bucket_name, final_model, 'h_tuning/model/')
+    utils.dump_model(flags.bucket_name, final_model, flags.bucket_folder+'/model/')
     logging.info('saved model!')
 
 
@@ -59,6 +58,7 @@ def _parse_args(argv):
     parser.add_argument('--n_jobs', type=str)
     parser.add_argument('--job-dir', type=str)
     parser.add_argument('--bucket_name', type=str)
+    parser.add_argument('--bucket_folder', type=str)
     
     return parser.parse_args(argv)
 

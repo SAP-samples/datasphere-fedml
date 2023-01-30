@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 from sklearn import model_selection
 
-from trainer import metadata
 from trainer import utils
 from sklearn.compose import make_column_selector
 from sklearn.compose import ColumnTransformer
@@ -68,23 +67,23 @@ def _train_and_evaluate(dataset, y_train, flags):
     
     
     logging.info('storing the preprocessed data in output/preprocessed_data.csv ...')
-    utils.upload_blob(flags.bucket_name, 'transformed_data.csv','datapreprocessor/output/preprocessed_data.csv')
+    utils.upload_blob(flags.bucket_name, 'transformed_data.csv',flags.bucket_folder+'/output/preprocessed_data.csv')
     
     logging.info('storing the y_train data in output/y_train.csv ...')
-    utils.upload_blob(flags.bucket_name, 'y_train.csv', 'datapreprocessor/output/y_train.csv')
+    utils.upload_blob(flags.bucket_name, 'y_train.csv', flags.bucket_folder+'/output/y_train.csv')
     
     # Write model and eval metrics to `output_dir`
     model_output_path = os.path.join(
-        flags.job_dir, 'datapreprocessor/model', metadata.MODEL_FILE_NAME)
+        flags.job_dir, flags.bucket_folder+'/model', 'model.pkl')
 
-    utils.dump_model(flags.bucket_name, estimator, 'datapreprocessor/model')
+    utils.dump_model(flags.bucket_name, estimator, flags.bucket_folder+'/model')
     logging.info('saved model!')
 
 
 
 def run_experiment(flags):
     
-    model_data = utils.get_dwc_data(flags.table_name)
+    model_data = utils.get_dwc_data(flags.table_name, flags.package_name)
     logging.info("\n\nThe train dataset shape is: " + str(model_data.shape))
     logging.info("\n\nTrain data:")
     logging.info(model_data.head())
@@ -105,6 +104,8 @@ def _parse_args(argv):
     parser.add_argument('--table_name', type=str)
     parser.add_argument('--job-dir', type=str)
     parser.add_argument('--bucket_name', type=str)
+    parser.add_argument('--bucket_folder', type=str)
+    parser.add_argument('--package_name', type=str)
     
     return parser.parse_args(argv)
 

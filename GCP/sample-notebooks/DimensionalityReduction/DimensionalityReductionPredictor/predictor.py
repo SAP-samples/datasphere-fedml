@@ -7,7 +7,6 @@ import joblib
 from google.cloud.aiplatform.prediction.predictor import Predictor
 from google.cloud.aiplatform.utils import prediction_utils
 
-
 class MyPredictor(Predictor):
     """An example Predictor for an AI Platform custom prediction routine."""
 
@@ -31,6 +30,6 @@ class MyPredictor(Predictor):
         """
         instances = instances['instances']
         inputs = np.asarray(instances)
-        outputs = self._model.fit_predict(inputs)
-        return {'predictions': outputs.tolist()}
-
+        data = pd.DataFrame(inputs)
+        outputs = self._model.transform(data)
+        return {"predictions": outputs.tolist()}

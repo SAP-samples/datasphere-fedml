@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 from sklearn import model_selection
 
-from trainer import metadata
 from trainer import model
 from trainer import utils
 
@@ -26,14 +25,14 @@ def _train_and_evaluate(estimator, dataset, flags):
     score = estimator.score(test_data, test_y)
     logging.info('\n\n\nScore for fit: ' + str(score) + '\n\n')
 
-    utils.dump_model(flags.bucket_name, estimator, 'log/model/')
+    utils.dump_model(flags.bucket_name, estimator, flags.bucket_folder+'/model/')
     logging.info('saved model!')
 
 
 
 def run_experiment(flags):
     
-    model_data = utils.get_dwc_data(flags.table_name, float(flags.table_size))
+    model_data = utils.get_dwc_data(flags.table_name, float(flags.table_size), flags.package_name)
 
     logging.info('data retrieved successfully')
     
@@ -52,6 +51,8 @@ def _parse_args(argv):
     parser.add_argument('--table_size', type=str)
     parser.add_argument('--job-dir', type=str)
     parser.add_argument('--bucket_name', type=str)
+    parser.add_argument('--bucket_folder', type=str)
+    parser.add_argument('--package_name', type=str)
     
     return parser.parse_args(argv)
 

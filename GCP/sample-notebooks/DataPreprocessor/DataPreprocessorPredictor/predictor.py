@@ -5,50 +5,38 @@ import numpy as np
 import joblib
 import pandas as pd
 
+from google.cloud.aiplatform.prediction.predictor import Predictor
+from google.cloud.aiplatform.utils import prediction_utils
 
-class MyPredictor(object):
+
+class MyPredictor(Predictor):
     """An example Predictor for an AI Platform custom prediction routine."""
 
-    def __init__(self, model):
+    def __init__(self):
+        return
         """Stores artifacts for prediction. Only initialized via `from_path`.
         """
-        self._model = model
+        
+    def load(self, artifacts_uri: str):
+        prediction_utils.download_model_artifacts(artifacts_uri)
+        
         self._column_names = ['PassengerId', 'Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked']
+        self._model = joblib.load("model.pkl")
 
-    def predict(self, instances, **kwargs):
+    def predict(self, instances):
         """Performs custom prediction.
         Preprocesses inputs, then performs prediction using the trained
         scikit-learn model.
         Args:
-            instances: A list of prediction input instances.
-            **kwargs: A dictionary of keyword args provided as additional
-                fields on the predict request body.
+            instances: dictionary with key 'instances' that has a list of prediction input instances.
         Returns:
-            A list of outputs containing the prediction results.
+            a dictionary with key 'predictions' and values as a list of outputs containing the prediction results.
         """
+        print('1',type(instances), instances)
+        instances = instances['instances']
+        print('2',type(instances), instances)
         inputs = np.asarray(instances)
+        print('3', type(inputs), inputs)
         data = pd.DataFrame(inputs, columns=self._column_names)
         outputs = self._model.transform(data)
-        return outputs.tolist()
-
-    @classmethod
-    def from_path(cls, model_dir):
-        """Creates an instance of MyPredictor using the given path.
-        This loads artifacts that have been copied from your model directory in
-        Cloud Storage. MyPredictor uses them during prediction.
-        Args:
-            model_dir: The local directory that contains the trained
-                scikit-learn model and the pickled preprocessor instance. These
-                are copied from the Cloud Storage model directory you provide
-                when you deploy a version resource.
-        Returns:
-            An instance of `MyPredictor`.
-        """
-        model_path = os.path.join(model_dir, 'model.pkl')
-        model = joblib.load(model_path)
-
-#         preprocessor_path = os.path.join(model_dir, 'preprocessor.pkl')
-#         with open(preprocessor_path, 'rb') as f:
-#             preprocessor = pickle.load(f)
-
-        return cls(model)
+        return {"predictions": outputs.tolist()}

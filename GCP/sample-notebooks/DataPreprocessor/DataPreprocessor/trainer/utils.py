@@ -10,7 +10,6 @@ from sklearn import model_selection
 import joblib
 # from tensorflow import gfile
 import pickle
-from trainer import metadata
 from google.cloud import storage
 from fedml_gcp import DbConnection
 from sklearn.model_selection import train_test_split
@@ -50,12 +49,12 @@ def dump_model(bucket_name, object_to_dump, output_path):
 #         joblib.dump(object_to_dump, wf)
         
     with open('model.pkl', 'wb') as model_file:
-      pickle.dump(object_to_dump, model_file)
+        pickle.dump(object_to_dump, model_file)
     
     upload_blob(bucket_name, 'model.pkl', output_path+'/model.pkl')
     
 
-def get_dwc_data(table):
+def get_dwc_data(table,package_name):
     select_dtypes = {
         'PassengerId': 'int64',
         'Survived': 'int64',
@@ -71,7 +70,7 @@ def get_dwc_data(table):
         'Embarked': 'object'
     }
 
-    db = DbConnection(package_name='trainer')
+    db = DbConnection(package_name=package_name)
     df = db.execute_query('SELECT * FROM %s' % ('SCE.'+table))
     df = pd.DataFrame(df[0], columns=df[1])
     df.Age.fillna(value=np.nan, inplace=True)

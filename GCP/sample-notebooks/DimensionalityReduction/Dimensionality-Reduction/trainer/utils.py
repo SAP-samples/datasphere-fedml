@@ -10,7 +10,6 @@ from sklearn import model_selection
 import joblib
 # from tensorflow import gfile
 import pickle
-from trainer import metadata
 from google.cloud import storage
 from fedml_gcp import DbConnection
 from sklearn.model_selection import train_test_split
@@ -41,13 +40,13 @@ def dump_model(object_to_dump, output_path, flags):
     """
         
     with open('model.pkl', 'wb') as model_file:
-      pickle.dump(object_to_dump, model_file)
+        pickle.dump(object_to_dump, model_file)
     
     upload_blob(flags.bucket_name, 'model.pkl', output_path+'/model.pkl' )
     
 
-def get_dwc_data(table, size):
-    db = DbConnection(package_name='trainer')
+def get_dwc_data(table, size, package_name):
+    db = DbConnection(package_name=package_name)
     res, column_headers = db.get_data_with_headers(table_name=table, size=size)
     data = pd.DataFrame(res, columns=column_headers)
     data = data.sample(frac=1).reset_index(drop=True)
@@ -59,7 +58,7 @@ def handle_data(data, flags):
     logging.info(test)
     logging.info('storing the test pca data in output/test_pca_data.csv ...')
     pd.DataFrame(test).to_csv('test_pca_data.csv')
-    upload_blob(flags.bucket_name,'test_pca_data.csv', 'dim-red/output/test_pca_data.csv')
+    upload_blob(flags.bucket_name,'test_pca_data.csv', flags.bucket_name+'/output/test_pca_data.csv')
     train.fillna(0, inplace=True)
     logging.info(str(train.shape[0]) + ' rows')
     logging.info(train.head())

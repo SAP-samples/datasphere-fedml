@@ -1,20 +1,28 @@
-import os
+import argparse
 import logging
+import os
+import sys
 
-from hdbcli import dbapi
-
-import pandas as pd
+import hypertune
 import numpy as np
-
+import pandas as pd
 from sklearn import model_selection
-import joblib
-# from tensorflow import gfile
-import pickle
-from trainer import metadata
 from google.cloud import storage
 from fedml_gcp import DbConnection
 from sklearn.model_selection import train_test_split
 
+import pickle
+
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+
+def get_estimator(flags):
+    vectorizer = TfidfVectorizer()
+    naive_bayes_classifier = MultinomialNB()
+    pipeline = Pipeline([('vectorizer', vectorizer), ('naiveBayes', naive_bayes_classifier)])
+
+    return pipeline
 
 def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
@@ -47,7 +55,7 @@ def dump_model(bucket_name, object_to_dump, output_path):
 #         joblib.dump(object_to_dump, wf)
         
     with open('model.pkl', 'wb') as model_file:
-      pickle.dump(object_to_dump, model_file)
+        pickle.dump(object_to_dump, model_file)
     
     upload_blob(bucket_name, 'model.pkl', output_path+'model.pkl')
     
@@ -71,8 +79,8 @@ def download_blob(bucket_name, source_blob_name, destination_file_name):
             )
         )
         
-def get_dwc_data(table, size):
-    db = DbConnection(package_name='trainer')
+def get_dwc_data(table, size, bucket_name):
+    db = DbConnection(url='/gcs/'+bucket_name+'/config.json')
     res, column_headers = db.get_data_with_headers(table_name=table, size=size)
     data = pd.DataFrame(res, columns=['0', '1'])
     return data
@@ -132,3 +140,62 @@ def preprocess_data(concat_data):
     concat_data['species'] = concat_data['species'].astype('int')
     
     return concat_data
+
+def _train_and_evaluate(estimator, dataset, flags):
+    
+    
+    train_X = dataset['0']   # '0' corresponds to Texts/Reviews
+    train_y = dataset['1'].astype('int')  # '1' corresponds to Label (1 - positive and 0 - negative)
+    logging.info(train_X)
+    logging.info(train_y)
+    
+    logging.info('fitting the model...')
+    estimator.fit(train_X, train_y)
+
+    dump_model(flags.bucket_name, estimator, flags.bucket_folder+'/model/')
+    logging.info('saved model!')
+
+
+
+def run_experiment(flags):
+    gcp_data = get_gcp_data(flags.bucket_name, flags.file_path, 'imdb_train.csv')
+    dwc_data = get_dwc_data(flags.table_name, float(flags.table_size), flags.bucket_name)
+    model_data = pd.concat([gcp_data, dwc_data], axis=0)
+    model_data = model_data.head(30000)
+    logging.info(model_data.shape)
+
+    logging.info('data retrieved successfully')
+    
+
+    estimator = get_estimator(flags)
+
+    _train_and_evaluate(estimator, model_data, flags)
+
+
+def _parse_args(argv):
+    """Parses command-line arguments."""
+
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('--table_name', type=str)
+    parser.add_argument('--table_size', type=str)
+    parser.add_argument('--file_path')
+    parser.add_argument('--job-dir', type=str)
+    parser.add_argument('--bucket_name', type=str)
+    parser.add_argument('--bucket_folder', type=str)
+    
+    return parser.parse_args(argv)
+
+
+def main():
+    """Entry point."""
+    logging.info('model starting')
+
+    flags = _parse_args(sys.argv[1:])
+    
+    logging.basicConfig(level='INFO')
+    run_experiment(flags)
+
+
+if __name__ == '__main__':
+    main()

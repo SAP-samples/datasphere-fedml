@@ -7,7 +7,6 @@ import numpy as np
 import pandas as pd
 from sklearn import model_selection
 
-from trainer import metadata
 from trainer import model
 from trainer import utils
 
@@ -22,16 +21,16 @@ def _train_and_evaluate(estimator, X, y, flags):
     
     print('storing the pca data in output/pca_data.csv ...')
     pd.DataFrame(dim_reduction_data).to_csv('data_reduction.csv')
-    utils.upload_blob(flags.bucket_name,'data_reduction.csv' , 'dim-red/output/data_reduction.csv' )
+    utils.upload_blob(flags.bucket_name,'data_reduction.csv' , flags.bucket_folder+'/output/data_reduction.csv' )
 
-    utils.dump_model(estimator, 'dim-red/model', flags)
+    utils.dump_model(estimator, flags.bucket_folder+'/model', flags)
     logging.info('saved model!')
 
 
 
 def run_experiment(flags):
     
-    model_data = utils.get_dwc_data(flags.table_name, float(1))
+    model_data = utils.get_dwc_data(flags.table_name, float(1), flags.package_name)
     X,y = utils.handle_data(model_data, flags)
 
     logging.info('data retrieved successfully')
@@ -51,6 +50,8 @@ def _parse_args(argv):
     parser.add_argument('--num_components', type=str)
     parser.add_argument('--job-dir', type=str)
     parser.add_argument('--bucket_name', type=str)
+    parser.add_argument('--bucket_folder', type=str)
+    parser.add_argument('--package_name', type=str)
     
     return parser.parse_args(argv)
 

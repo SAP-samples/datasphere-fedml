@@ -8,7 +8,8 @@ REQUIRED_PACKAGES = [
     'pandas',
     'numpy',
     'hdbcli',
-    'pandas-gbq'
+    'pandas-gbq',
+    'fedml_gcp'
 
 ]
 

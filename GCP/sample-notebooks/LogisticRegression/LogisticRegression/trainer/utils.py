@@ -10,7 +10,6 @@ from sklearn import model_selection
 import joblib
 # from tensorflow import gfile
 import pickle
-from trainer import metadata
 from google.cloud import storage
 from fedml_gcp import DbConnection
 from sklearn.model_selection import train_test_split
@@ -46,12 +45,12 @@ def dump_model(bucket_name, object_to_dump, output_path):
 #         joblib.dump(object_to_dump, wf)
         
     with open('model.pkl', 'wb') as model_file:
-      pickle.dump(object_to_dump, model_file)
+        pickle.dump(object_to_dump, model_file)
     
     upload_blob(bucket_name, 'model.pkl', output_path+'model.pkl')
     
 
-def get_dwc_data(table, size):
+def get_dwc_data(table, size, package_name):
     columns_dtype = {
         'sepal_length':'float32',
         'sepal_width':'float32',
@@ -59,7 +58,7 @@ def get_dwc_data(table, size):
         'petal_width':'float32',
         'species':'string'}
     
-    db = DbConnection(package_name='trainer')
+    db = DbConnection(package_name=package_name)
     res, column_headers = db.get_data_with_headers(table_name=table, size=size)
     data = pd.DataFrame(res, columns=column_headers)
     data = data.sample(frac=1).reset_index(drop=True)

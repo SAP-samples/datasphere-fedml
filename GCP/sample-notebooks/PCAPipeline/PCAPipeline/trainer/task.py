@@ -8,7 +8,6 @@ import numpy as np
 import pandas as pd
 from sklearn import model_selection
 
-from trainer import metadata
 from trainer import model
 from trainer import utils
 
@@ -30,14 +29,14 @@ def _train_and_evaluate(estimator, train, flags):
     estimator.fit(X, y)
 
 
-    utils.dump_model(flags.bucket_name, estimator, 'pca-pipeline/model/')
+    utils.dump_model(flags.bucket_name, estimator, flags.bucket_folder+'/model/')
     logging.info('saved model!')
 
 
 
 def run_experiment(flags):
     
-    model_data = utils.get_dwc_data(flags.table_name, float(1))
+    model_data = utils.get_dwc_data(flags.table_name, float(flags.table_size),flags.package_name)
     model_data.fillna(0, inplace=True)
     logging.info(str(model_data.shape[0]) + ' rows')
     logging.info(model_data.head())
@@ -56,9 +55,12 @@ def _parse_args(argv):
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--table_name', type=str)
+    parser.add_argument('--table_size', type=str)
     parser.add_argument('--n_components', type=str)
     parser.add_argument('--job-dir', type=str)
     parser.add_argument('--bucket_name', type=str)
+    parser.add_argument('--bucket_folder', type=str)
+    parser.add_argument('--package_name', type=str)
     
     return parser.parse_args(argv)
 

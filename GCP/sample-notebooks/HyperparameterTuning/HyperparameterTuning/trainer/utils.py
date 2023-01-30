@@ -10,7 +10,6 @@ from sklearn import model_selection
 import joblib
 # from tensorflow import gfile
 import pickle
-from trainer import metadata
 from google.cloud import storage
 from sklearn.model_selection import train_test_split
 
