@@ -22,7 +22,7 @@ Method to deploy a MLflow Databricks model to SAP Kyma Kubernetes.
 
 #### Create a Kyma service account and create a kubeconfig.yaml file to connect to Kyma Kubernetes
 
-  - Create a Kyma service account by referring the [(tutorial)](https://developers.sap.com/tutorials/kyma-create-service-account.html#55c9eee0-eaee-4005-a6a3-4b72f83fe186).    
+  - Create a Kyma service account by referring the [(tutorial)](https://developers.sap.com/tutorials/kyma-create-service-account.html#55c9eee0-eaee-4005-a6a3-4b72f83fe186).  
 
   - In step 2.1 of the [(tutorial)](https://developers.sap.com/tutorials/kyma-create-service-account.html#55c9eee0-eaee-4005-a6a3-4b72f83fe186), add the following fields:    
 
@@ -44,7 +44,7 @@ Method to deploy a MLflow Databricks model to SAP Kyma Kubernetes.
 
 #### **Pre-requisite steps for SAP Kyma Kubernetes Deploy using Azure Container Registry**  
 
-- Ensure that the Azure Container Registry is created either by creating a Azure ML Workspace [(link)](https://docs.microsoft.com/en-us/azure/machine-learning/how-to-manage-workspace?tabs=azure-portal#create-a-workspace) or via the Azure portal [(link)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli). Also, take a note of the login server in the overview page of the created Azure Container Registry.
+- Ensure that the Azure Container Registry is created via the Azure portal [(link)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-portal?tabs=azure-cli). Also, take a note of the login server in the overview page of the created Azure Container Registry.
 
 - Create a Service Principal and assign 'AcrPush' role to the Service Principal in the Azure Container Registry.
 
@@ -56,11 +56,15 @@ Method to deploy a MLflow Databricks model to SAP Kyma Kubernetes.
 
   - Assign 'AcrPush' role to the created Service Principal in the Azure Container Registry using the Azure CLI [(link)](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-service-principal#use-an-existing-service-principal) or Azure Portal [(link)](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal?tabs=current).
 
+- Preferably, create an AzureML notebook  by referring the [(guide)](https://learn.microsoft.com/en-us/azure/machine-learning/quickstart-run-notebooks#create-a-new-notebook) to run the SAP Kyma Kubernetes deployment steps.
+
 #### **Pre-requisite steps for SAP Kyma Kubernetes Deploy using AWS Elastic Container Registry**
 
-- You must have an IAM user that does not have MFA enabled and has EC2 container registry access permissions for pushing and pulling to ecr. [(link)](https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry_auth.html)
+- Create an IAM user that does not have MFA enabled by referring the [(guide)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) and ensure the IAM user has EC2 container registry access permissions for pushing and pulling to ecr. [(link)](https://docs.aws.amazon.com/AmazonECR/latest/userguide/security-iam-awsmanpol.html).
 
-- You must also create a profile using aws cli that connects to the IAM user with EC2 container registry access permissions. Please ensure the region of this profile is the same region as the jupyter instance.[(link)](https://docs.aws.amazon.com/cli/latest/reference/configure/index.html)
+- Preferably, create a Sagemaker Notebook Instance by referring the [(guide)](https://docs.aws.amazon.com/sagemaker/latest/dg/howitworks-create-ws.html), to run the SAP Kyma Kubernetes deployment steps.
+
+- You must also create a profile using aws cli that connects to the IAM user with EC2 container registry access permissions. Please ensure the region of this profile is the same region as the jupyter instance by referring [(link)](https://docs.aws.amazon.com/cli/latest/reference/configure/index.html). If you have a Sagemaker Notebook Instance created, please run it in the Sagemaker Notebook instance terminal.
 
 
 ### **Parameters**:
@@ -119,15 +123,18 @@ endpoint_url=deploy_to_kyma(databricks_config_path='<path-to-databricks-config-j
 ## **predict**  
 Method to perform inferencing on the deployed SAP Kyma Kubernetes endpoint.
 
-`predict(endpoint_url,data)`
+`predict(endpoint_url,content_type,data)`
 
 ### **Parameters**  :
 
 `endpoint_url` [(str)](https://docs.python.org/3/library/stdtypes.html#str):   
- The endpoint url of the SAP Kyma Kubernetes deployment.  
+ The endpoint url of the SAP Kyma Kubernetes deployment. 
 
-`data` (Serialized json object):      
-The data used for inferencing. 
+`content_type`:      
+They type of content passed. Accepted content types are "application/json" and "text/csv".  
+
+`data`:      
+The data used for inferencing. Please refer the ways to format the test data for inferencing by referring the [(link)](https://mlflow.org/docs/latest/models.html#deploy-mlflow-models)
 
 ### **Returns**
 
@@ -135,15 +142,29 @@ The result of inferencing.
 
 ### **Remarks**  
 
-Example: Inferencing the SAP Kyma Kubernetes webservice endpoint 
+Example 1: Inferencing the SAP Kyma Kubernetes webservice endpoint with pandas dataframe in csv format.
 ```
-data = json.dumps({
-    'data': <pandas-dataframe-containing-inferencing-data>.values.tolist()
-})
 
 #Predict using the endpoint_url
 
 from fedml_databricks import predict
-predict(endpoint_url=<kyma-endpoint-url>,data=data)
+predict(endpoint_url=<kyma-endpoint-url>,content_type="text/csv",data=df.to_csv(index=False))
+
+```
+
+Example 2: Inferencing the SAP Kyma Kubernetes webservice endpoint with pandas dataframe in json format.
+```
+
+#Predict using the endpoint_url
+import json
+data = {
+    "dataframe_records": df.to_dict(orient='records')
+}
+json_data = json.dumps(data)
+
+from fedml_databricks import predict
+predict(endpoint_url=<kyma-endpoint-url>,content_type="application/json",data=json_data)
+
+```
 
 

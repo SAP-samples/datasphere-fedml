@@ -94,7 +94,7 @@ Example: <br>
 Returns the data fetched from schema view as a list <list of rows, list of column headers>. <br>
 Parameters: <br> 
 `'table_name'` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The name of the table.<br>
-`'size'` ([int](https://docs.python.org/3/library/functions.html#int) or [float](https://docs.python.org/3/library/functions.html#float)): Number of rows to fetch from the schema view. For example, size=1 fetches all the rows of the view, size=0.2 fetches 20% of the rows in the view.<br>
+`'size'` ([float](https://docs.python.org/3/library/functions.html#float)): Number of rows to fetch from the schema view. For example, size=1 fetches all the rows of the view, size=0.2 fetches 20% of the rows in the view.<br>
 Example:<br>
 `dwc.get_data_with_headers(table_name='IRIS_VIEW', size=1)`
 <br> <br>
@@ -103,7 +103,7 @@ Example:<br>
 Returns the data fetched from schema view as a PySpark DataFrame. <br>
 Parameters: <br> 
 `'table_name'` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The name of the table.<br>
-`'size'` ([int](https://docs.python.org/3/library/functions.html#int) or [float](https://docs.python.org/3/library/functions.html#float)): Number of rows to fetch from the schema view. For example, size=1 fetches all the rows of the view, size=0.2 fetches 20% of the rows in the view.<br>
+`'size'`  ([float](https://docs.python.org/3/library/functions.html#float)): Number of rows to fetch from the schema view. For example, size=1 fetches all the rows of the view, size=0.2 fetches 20% of the rows in the view.<br>
 Example:<br>
 `dwc.get_data_with_headers_pyspark(table_name='IRIS_VIEW', size=1)`
 <br> <br>
@@ -137,7 +137,7 @@ Executes the SQL Query and returns the data fetched as a list <list of rows, lis
 Parameter: <br> 
 `'query'`  ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SQL query to execute<br>
 Example:<br>
-`dwc.execute_query('SELECT * FROM ' + config['schema'] +'.SALES_VIEW')`
+`dwc.execute_query('SELECT * FROM \"FEDMLTEST\".\"iris_view\"')`
 <br><br>
 
 10. **execute_query_pyspark(`'query'`)**: <br> 
@@ -145,7 +145,7 @@ Executes the SQL Query and returns the data fetched as a PySpark DataFrame. <br>
 Parameter: <br> 
 `'query'`  ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SQL query to execute<br>
 Example:<br>
-`dwc.execute_query_pyspark('SELECT * FROM ' + config['schema'] +'.SALES_VIEW')`
+`dwc.execute_query_pyspark('SELECT * FROM \"FEDMLTEST\".\"iris_view\"')`
 
 11. **create_table(`'query'`)**: <br> 
 Creates a table in SAP Data Warehouse Cloud. <br>
