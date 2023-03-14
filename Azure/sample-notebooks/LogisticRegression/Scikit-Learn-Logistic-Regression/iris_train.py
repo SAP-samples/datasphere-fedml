@@ -87,7 +87,7 @@ parser.add_argument('--table_size', type=str)
 args = parser.parse_args()
 
 print('\n\n********* Handling Data - Splitting into Train and Test *********n\n')
-data = get_data(args.table_name, args.table_size) #getting data from DWC
+data = get_data(args.table_name, args.table_size) #getting data from SAP Datasphere
 
 # Shuffling the dataframe to get a more representative sample, then using only the top 100 records for train and test
 data = data.sample(frac=1).reset_index(drop=True)

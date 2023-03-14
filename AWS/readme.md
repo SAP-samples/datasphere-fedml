@@ -1,6 +1,10 @@
+# **fedml_aws**
+
+fedml_aws currently supports Scikit-learn version 0.23-1. The minimum python version needed is 3.6.
+<br/><br/>
 # **DwcSagemaker class**
 
-DwcSagemaker class initializes the resources required for the model training, and provides methods that enable the training data to be read from SAP DWC and trains a Machine Learning model on Amazon Sagemaker.
+DwcSagemaker class initializes the resources required for the model training, and provides methods that enable the training data to be read from SAP Datasphere and trains a Machine Learning model on Amazon Sagemaker.
 
 ## **Prerequisites**
 - `sagemaker>=2`
@@ -58,6 +62,8 @@ Path (absolute or relative) to the Python source file which should be executed a
 **`source_dir` [(str)](https://docs.python.org/3/library/stdtypes.html#str):**
 
 Path (absolute, relative or an S3 URI) to a directory with any other training source code dependencies aside from the train_script file. If specified, then train_script must point to a file located at the root of source_dir.
+
+If deploying to kyma,  you will have to access the files stored in the source_dir from the "source/" folder inside of the container. For example, if you decide to load data from SAP Datasphere inside of your script for predictions (let's say in input_fn you load the data), you will have pass a source_dir to this function with the config.json included in the folder. When you access it during predictions, you will access it from the "source/" path passing the path as the `url` parameter to DBConnection. (e.g. `db = DbConnection(url='source/config.json')`). The same holds true for any other files you may use that was passed in the source_dir.
 
 **`instance_count` [(int)](https://docs.python.org/3/library/functions.html#int) (optional):**
 

@@ -1,6 +1,6 @@
 # **Description**
 
-The FedML library applies the data federation architecture with SAP Data Warehouse Cloud for intelligently sourcing the data in real-time from data storages. The library provides functionality that enables businesses and data scientists to build, train and deploy machine learning models on hyperscalers, without the hassle of replicating or migrating the data from the original data storage.
+The FedML library applies the data federation architecture with SAP Datasphere for intelligently sourcing the data in real-time from data storages. The library provides functionality that enables businesses and data scientists to build, train and deploy machine learning models on hyperscalers, without the hassle of replicating or migrating the data from the original data storage.
 
 # **Prerequisites** 
 

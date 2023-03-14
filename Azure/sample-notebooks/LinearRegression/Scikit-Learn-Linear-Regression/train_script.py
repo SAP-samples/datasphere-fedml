@@ -61,7 +61,7 @@ parser.add_argument('--table_name', type=str)
 args = parser.parse_args()
 
 print('\n\n********* Handling Data - Splitting into Train and Test *********n\n')
-data = get_data(args.table_name) #getting data from DWC
+data = get_data(args.table_name) #getting data from SAP Datasphere
 y = data[label_column]
 
 data.drop(label_column, axis=1, inplace=True)

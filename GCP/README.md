@@ -1,6 +1,6 @@
 # **DwcGCP class**
 
-DwcGCP class initializes the resources required for the model training, enables the training data to be read from SAP DWC in real time without storing it in any GCP Storage, trains a Machine Learning model and deploys it on the Google Cloud Platform.
+DwcGCP class initializes the resources required for the model training, enables the training data to be read from SAP Datasphere in real time without storing it in any GCP Storage, trains a Machine Learning model and deploys it on the Google Cloud Platform.
 
 ## **Constructor**
 
@@ -42,7 +42,7 @@ two values supported - 'custom' and 'customPythonPackage'. Defaults to 'custom'.
 
 If 'custom' is provided, then the `training_inputs` should match the training inputs for a CustomTrainingJob in Vertex AI. 
 
-In addition, if using 'custom' and getting data from SAP Data Warehouse Cloud in your training script, you will need to do the following:
+In addition, if using 'custom' and getting data from SAP Datasphere in your training script, you will need to do the following:
 1. upload the config.json to the GCS bucket you specified to the DwcGCP constructor.
 2. In your training script, where you are creating the instance of DbConnection, you will need to use the url parameter and pass url='/gcs/'+bucket_name+'/config.json', where bucket_name is one of the cmd arguments you passed to the args parameter in `params`.
 

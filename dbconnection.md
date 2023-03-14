@@ -1,6 +1,6 @@
 # **DbConnection class**
 
-DbConnection class abstracts the connectivity to SAP DataWarehouse Cloud, data query, data fetch and data load thereby reducing complexity and efficiently sourcing the data for the Hyperscaler Machine Learning environments with just couple lines of code.
+DbConnection class abstracts the connectivity to SAP Datasphere, data query, data fetch and data load thereby reducing complexity and efficiently sourcing the data for the Hyperscaler Machine Learning environments with just couple lines of code.
 
 ## Pre-requisite:
 
@@ -24,7 +24,7 @@ config.json file present in main path <BR>
 <br>
 
 **Setting up your config.json**
-1. Navigate to the space management inside DWC 
+1. Navigate to the space management inside SAP Datasphere 
 <br>
 <img src="space_management.png" alt="space management" height="500">
 <br>
@@ -94,7 +94,7 @@ Example:<br>
 <br><br>
 
 5. **create_table(`'query'`)**: <br> 
-Created a table in DWC. <br>
+Created a table in SAP Datasphere. <br>
 Please note this function will create a default column called `INSERTED_AT` in the table specified. This column will keep track of the timestamp at which you inserted data into the table for the first time.<br>
 Parameter: <br> 
 `'query'`  ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SQL query to create a table.<br>
@@ -115,7 +115,7 @@ Example:<br>
 
 7. **drop_table(`'table_name'`)**: <br> 
 Drops table specified. <br>
-Please note this function only deletes the DB Users table. If this table was deployed in DWC and/or has a view attached, you will need to delete those manually in DWC. <br>
+Please note this function only deletes the DB Users table. If this table was deployed in SAP Datasphere and/or has a view attached, you will need to delete those manually in SAP Datasphere. <br>
 Parameter: <br> 
 `'table_name'`  ([str](https://docs.python.org/3/library/stdtypes.html#str)): The table name. <br>
 Example:<br>

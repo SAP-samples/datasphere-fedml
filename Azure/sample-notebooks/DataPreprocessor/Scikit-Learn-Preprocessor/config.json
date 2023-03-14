@@ -1,5 +1,5 @@
 {
-    "address": "<insert your DWC address here>",
+    "address": "<insert your SAP Datasphere address here>",
     "port": "<insert port here>",
     "user": "<insert your user here>",
     "password": "<insert password here>",

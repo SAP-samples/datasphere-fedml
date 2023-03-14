@@ -164,7 +164,7 @@ Example1: Creation of new Environment with environment_type 'CondaPackageEnviron
 
 # **DwcAzureTrain class**
 
-DwcAzureTrain class initializes the resources required for the model training, enables the training data to be read from SAP DWC in real time without storing it in any Azure Storage, trains a Machine Learning model and registers it. 
+DwcAzureTrain class initializes the resources required for the model training, enables the training data to be read from SAP Datasphere in real time without storing it in any Azure Storage, trains a Machine Learning model and registers it. 
 
 ## **Constructor**
 
@@ -321,7 +321,7 @@ Environment:
 ## **Methods**
 
 [generate_run_config](#generate_run_config)                 
-Copy the SAP DWC connection config file 'config.json' to 'source_directory' and generates and returns the ['azureml.core.ScriptRunConfig'](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.core.scriptrunconfig?view=azure-ml-py) object for training.  
+Copy the SAP Datasphere connection config file 'config.json' to 'source_directory' and generates and returns the ['azureml.core.ScriptRunConfig'](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.core.scriptrunconfig?view=azure-ml-py) object for training.  
 
 [submit_run](#submit_run)  
 Submit an experiment with the option to download the output files and returns the active created run.  
@@ -333,7 +333,7 @@ Register a model for operationalization.
 Download files from a given storage prefix (folder name) or the entire container if prefix is unspecified.
 
 [copy_config_file](#copy_config_file)  
-Copy the SAP DWC connection config file `config.json` from `config_file_path` to `script_directory`
+Copy the SAP Datasphere connection config file `config.json` from `config_file_path` to `script_directory`
 
 [update_compute](#update_compute)  
 Updates the compute target
@@ -347,7 +347,7 @@ Updates the experiment
 
 ### **generate_run_config**
 
-Copy the SAP DWC connection config file 'config.json' to 'source_directory' and generates the ['azureml.core.ScriptRunConfig'](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.core.scriptrunconfig?view=azure-ml-py) object for training.
+Copy the SAP Datasphere connection config file 'config.json' to 'source_directory' and generates the ['azureml.core.ScriptRunConfig'](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.core.scriptrunconfig?view=azure-ml-py) object for training.
 
 `generate_run_config(config_args,is_dwc_connection_required=True,config_file_path=None)`
 
@@ -359,11 +359,11 @@ A dictionary of keyword args to create a ScriptRunConfig object.
 
 `is_dwc_connection_required` [(bool)](https://docs.python.org/3/library/functions.html#bool)    
 default value: True  
-When set to True, it copies the SAP DWC connection config file `config.json` from `config_file_path` to `source_directory` specified in `config_args`. This config file is used for connection to SAP DWC during the training. When SAP DWC connection is not required for the training run, set the parameter to False.
+When set to True, it copies the SAP Datasphere connection config file `config.json` from `config_file_path` to `source_directory` specified in `config_args`. This config file is used for connection to SAP Datasphere during the training. When SAP Datasphere connection is not required for the training run, set the parameter to False.
 
 `config_file_path` [(str)](https://docs.python.org/3/library/stdtypes.html#str)   
 default value: None  
-The file path of the 'config.json' file which contains the connection details of SAP DWC.  
+The file path of the 'config.json' file which contains the connection details of SAP Datasphere.  
 
 #### **Returns**
 
@@ -504,14 +504,14 @@ An optional flag whether to append the specified prefix from the final output fi
 
 ### **copy_config_file**
 
-Copy the SAP DWC connection config file `config.json` from `config_file_path` to `script_directory`
+Copy the SAP Datasphere connection config file `config.json` from `config_file_path` to `script_directory`
 
 `copy_config_file(config_file_path,script_directory)`
 
 #### **Parameters**
 
 `config_file_path` [(str)](https://docs.python.org/3/library/stdtypes.html#str)     
-The file path of the 'config.json' file which contains the connection details of SAP DWC.  
+The file path of the 'config.json' file which contains the connection details of SAP Datasphere.  
 
 `script_directory` [(str)](https://docs.python.org/3/library/stdtypes.html#str)   
 The file path of the destination.

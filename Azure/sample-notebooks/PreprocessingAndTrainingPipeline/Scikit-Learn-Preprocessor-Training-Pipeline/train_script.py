@@ -38,9 +38,9 @@ train_csv = train_dataset.to_pandas_dataframe()
 
 db = DbConnection()
 res, column_headers = db.get_data_with_headers(table_name=args.table_name, size=args.table_size)
-dwc_data = pd.DataFrame(res, columns=['0', '1'])
+datasphere_data = pd.DataFrame(res, columns=['0', '1'])
 
-data = pd.concat([train_csv, dwc_data], axis=0)
+data = pd.concat([train_csv, datasphere_data], axis=0)
 data = data.head(30000)
 print(data.shape)
 

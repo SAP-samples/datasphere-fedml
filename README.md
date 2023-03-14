@@ -6,7 +6,7 @@
  
 <br>
 
-The SAP Federated ML Python libraries (FedML) applies the Data Federation architecture of SAP DataWarehouse Cloud for intelligently sourcing SAP as well as  non-SAP data for Machine Learning experiments done at the Hyperscalers thereby removing the need for replicating or moving data. 
+The SAP Federated ML Python libraries (FedML) applies the Data Federation architecture of SAP Datasphere for intelligently sourcing SAP as well as  non-SAP data for Machine Learning experiments done at the Hyperscalers thereby removing the need for replicating or moving data. 
 By abstracting the Data Connection, Data load, and Model training (with flexibility and provision for user provided training scripts), Model Deployment, and Inferencing for Hyperscaler Machine learning processes , the FedML library  provides end to end integration with few lines of code .
 
 
@@ -18,7 +18,7 @@ Here are some high level major feature additions in Version 2.0 of FedML:
 <li> Support for deployment to hyperscaler environment.
 <li>Support for deployment to SAP Business Technology Platform Kyma environment. 
 <li>Support for inferencing with hyperscaler deployed as well as Kyma deployed models.
-<li>Support for writing inferenced results back to SAP Data Warehouse Cloud.
+<li>Support for writing inferenced results back to SAP Datasphere.
 </ul>
 <br>
 
@@ -30,7 +30,7 @@ Here are some high level major feature additions in Version 2.0 of FedML:
 
 ## Requirements 
  
-- SAP Data Warehouse Cloud tenant instance, with connectivity established to the remote data sources, and views exposed, that can be consumed by FedML. 
+- SAP Datasphere tenant instance, with connectivity established to the remote data sources, and views exposed, that can be consumed by FedML. 
 
 - Access to corresponding Hyperscaler Machine learning environments with approriate configurations. See [Configuration](#configuration) section.
 <br>
@@ -39,11 +39,11 @@ Here are some high level major feature additions in Version 2.0 of FedML:
 
 1. Try out examples from the **samples-notebooks** directory of corresponding Hyperscaler library 
 
-2. For setting up the remote models in SAP DataWarehouse Cloud to federate data from hyperscaler data stores for use with FedML , here are some Discovery Mission examples :
+2. For setting up the remote models in SAP Datasphere to federate data from hyperscaler data stores for use with FedML , here are some Discovery Mission examples :
 
-- [Integrating Amazon Athena and SAP DataWarehouse Cloud](https://discovery-center.cloud.sap/missiondetail/3401/3441/)
-- [Integrating Google Big Query and SAP DataWarehouse Cloud](https://discovery-center.cloud.sap/missiondetail/3409/3449/)
-- [Integrating Azure Data Explorer and SAP DataWarehouse Cloud](https://discovery-center.cloud.sap/missiondetail/3433/3473/)
+- [Integrating Amazon Athena and SAP Datasphere](https://discovery-center.cloud.sap/missiondetail/3401/3441/)
+- [Integrating Google Big Query and SAP Datasphere](https://discovery-center.cloud.sap/missiondetail/3409/3449/)
+- [Integrating Azure Data Explorer and SAP Datasphere](https://discovery-center.cloud.sap/missiondetail/3433/3473/)
 
  <br>
 
