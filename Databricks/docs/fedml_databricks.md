@@ -114,11 +114,6 @@ from fedml_databricks import deploy_to_kyma
 endpoint_url=deploy_to_kyma(databricks_config_path='<path-to-databricks-config-json-file>')
 ```
 
-### **Troubleshooting Kyma Deployment** 
-
-- If you get an error similar to the below image during deployment, please ensure that you have a python version compatible with the latest version of mlflow which can be found [here](https://pypi.org/project/mlflow/) and install the latest version of mlflow.
-
-![protobuferror](protobuf_error.png)
 
 ## **predict**  
 Method to perform inferencing on the deployed SAP Kyma Kubernetes endpoint.
