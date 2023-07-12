@@ -51,7 +51,8 @@ Here are some high level major feature additions in Version 2.0 of FedML:
 
 - For AWS FedML library specific pre-requisites, configuration and documentation, [please refer here](AWS/fedml_aws.md) <br>
 - For GCP FedML library specific pre-requisites, configuration and documentation, [please refer here](GCP/fedml_gcp.md)<br>
-- For Azure FedML library specific pre-requisites, configuration and documentation, [please refer here](Azure/readme.md) <br><br>
+- For Azure FedML library specific pre-requisites, configuration and documentation, [please refer here](Azure/readme.md) <br>
+- For Databricks FedML library specific pre-requisites, configuration and documentation, [please refer here](Databricks/README.md)<br><br>
 
 
 ## Limitations 

@@ -1,3 +1,7 @@
+# **fedml_gcp**
+
+fedml_gcp currently supports python 3.7 to 3.9.
+
 # **DwcGCP class**
 
 DwcGCP class initializes the resources required for the model training, enables the training data to be read from SAP Datasphere in real time without storing it in any GCP Storage, trains a Machine Learning model and deploys it on the Google Cloud Platform.

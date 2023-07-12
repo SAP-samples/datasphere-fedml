@@ -14,7 +14,7 @@ The SAP Federated ML Python library for Databricks applies the Data Federation a
 
 # **Documentation**
 
-For documentation on SAP Datasphere Core Connectivity methods, please refer [(DbConnection)](docs/dbconnection.md). 
+For documentation on SAP Datasphere Core Connectivity methods, please refer [(DbConnection)](../dbconnection.md) 
 
 For documentation on FedML Databricks SAP Kyma Kubernetes deployment and inferencing methods, please refer [(FedML Databricks Deployment/Inferencing)](docs/fedml_databricks.md).  
 
