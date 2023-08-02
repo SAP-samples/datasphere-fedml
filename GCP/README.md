@@ -1,6 +1,6 @@
 # **fedml_gcp**
 
-fedml_gcp currently supports python 3.7 to 3.9.
+Please make sure the libraries in your setup.py for training and requirements.txt for custom predictions are supported by the Python version you are using.
 
 # **DwcGCP class**
 
