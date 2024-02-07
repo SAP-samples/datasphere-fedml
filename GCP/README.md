@@ -38,7 +38,7 @@ GCP Cloud Storage destination path. Default: 'train/training.tar.gz'
 ## **Training a model on Google Vertex AI**
 
 **`train_model(training_inputs, training_type='custom', params={})`**
-
+Note: please ensure you are using a training image that is currently supported by GCP.
 #### **Parameters**:
 
 **`training_type` [(str)](https://docs.python.org/3/library/stdtypes.html#str) (required):**
@@ -88,7 +88,7 @@ If `create_endpoint` is False, endpoint_config key-value pairs should match thos
 ## **Deploy model to Vertex AI**
 
 **`deploy(model, model_config={}})`**
-
+Note: please ensure you are using a deploy image that is currently supported by GCP.
 #### **Parameters**:
 
 **`model` [(str)](https://docs.python.org/3/library/stdtypes.html#str) or [(aiplatform.Model)](https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.Model) (required):**

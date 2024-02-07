@@ -5,7 +5,7 @@ REQUIRED_PACKAGES = [
     'fedml_gcp',
     'matplotlib>=2.2.3',
     'seaborn>=0.9.0',
-    'scikit-learn>=0.20.2',
+    'scikit-learn>=1.0.2',
     'pandas',
     'numpy',
     'hdbcli',
