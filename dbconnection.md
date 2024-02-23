@@ -58,7 +58,7 @@ Here you will find the following information for your SAP Datasphere config: <br
 **DBConnection(`'url=None'`, `'dict_obj=None'`)**<br>
 Parameters: <br>
 `'url':` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The url path of where to find the SAP Datasphere config file (config.json)<br>
-`'dict_obj':` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SAP Datasphere config in the form of a dictionary object.<br>
+`'dict_obj':` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SAP Datasphere config in the form of a dictionary object. Please note this parameter is only available with FedML Databricks<br>
 Examples: <br>
 `db = DbConnection(url='/dbfs/FileStore/config.json')`<br>
 `db = DbConnection(dict_obj=config_object)`
@@ -152,6 +152,7 @@ Example:<br>
 11. **create_table(`'query'`)**: <br> 
 Creates a table in SAP Datasphere. <br>
 Please note this function will create a default column called `INSERTED_AT` in the table specified. This column will keep track of the timestamp at which you inserted data into the table for the first time.<br>
+Please note this will create the table in SAP Datasphere with all caps.(i.e. providing table1 will result in TABLE1 in SAP DataSphere) So any references to a table after using this function to create it, must also be in all caps.<br>
 Parameter: <br> 
 `'query'`  ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SQL query to create a table.<br>
 Example:<br>
