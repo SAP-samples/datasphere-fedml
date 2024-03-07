@@ -4,7 +4,7 @@ DbConnection class abstracts the connectivity to SAP Datasphere, data query, dat
 
 ## Pre-requisite:
 
-SAP Datasphere config stored in a secure manner in the form of Databricks Secret. <BR>
+SAP Datasphere config can be stored in a secure manner in the form of Databricks Secret - this step is optional, but recommended for security. <BR>
 
 **<u>SAP Datasphere config</u>**  
 ```
