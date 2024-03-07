@@ -14,8 +14,9 @@ Create an AzureML workspace from the Azure portal (recommended) or optionally th
 
 # **Documentation**
 
-- For documentation of library class, methods and parameters, refer [fedml_azure.md](./docs/fedml_azure.md)  
-- For documentation of how to use the library, refer [sample_notebooks](./sample-notebooks)
+- For documentation of library class, methods and parameters, refer [fedml_azure.md](./docs/fedml_azure.md). 
+- For documentation of how to use the library, refer [sample_notebooks](./sample-notebooks).
+- For documentation on whitelisting single Azure IP in SAP Datasphere, refer [guide](./docs/whitelist_ip.md).
 
 # **Troubleshooting**
 
