@@ -6,23 +6,32 @@
  
 <br>
 
-The SAP Federated ML Python libraries (FedML) applies the Data Federation architecture of SAP Datasphere for intelligently sourcing SAP as well as  non-SAP data for Machine Learning experiments done at the Hyperscalers thereby removing the need for replicating or moving data. 
-By abstracting the Data Connection, Data load, and Model training (with flexibility and provision for user provided training scripts), Model Deployment, and Inferencing for Hyperscaler Machine learning processes , the FedML library  provides end to end integration with few lines of code .
-
+The SAP Federated ML Python libraries (FedML) applies the Data Federation architecture of SAP Datasphere for intelligently sourcing SAP as well as non-SAP data for Machine Learning experiments done at the ML platforms removing the need for replicating or moving data. 
+By abstracting the Data Connection, Data load (for all ML platforms) and Model training (with flexibility and provision for user provided training scripts), Model Deployment, and Inferencing (for Hyperscaler Machine learning platforms) , the FedML library  provides end to end integration with few lines of code .
 
  ## What's New 
+ 
+<b>1.</b> The new version of FedML (available as <b>fedml-dsp</b> in PyPi, V1.0.0) :
+<ul><li>Is machine learning platform-independent. It can be used in all machine learning platforms
+<li>Supports NVIDIA RAPIDS™, CUDA cuDF and cuPy and hence can be used for training models in GPU environments.
+<li>Supports sourcing data from SAP Datasphere models directly into PySpark and cuPy (for GPU) dataframes.
+<li>Supports SAP AI Core Deployment  - Models that are trained in any ML Platform (and containerized independently) can now be deployed in SAP GenAI Hub's AI Core with couple lines of code.
+<li>Supports writing inferenced results back to SAP Datasphere.
+ </ul>
+ 
+ ### Solution Architecture 
+ 
+ ![ARD](/FedMLNew.jpg)
+ 
+<b>2.</b>FedML (Original, V2.0) for hyperscaler platforms [AWS, GCP, Azure and Databricks] :</font>
+<ul><li>Is pip installable from PyPi for its respective hyperscaler platforms.
+<li>Supports model training and deployment to hyperscaler environment.
+<li>Supports deployment to SAP Business Technology Platform Kyma environment. 
+<li>Supports inferencing with hyperscaler deployed as well as Kyma deployed models.
+<li>Supports writing inferenced results back to SAP Datasphere.
+</ul></ul>
 
-Here are some high level major feature additions in Version 2.0 of FedML:
-
-<ul><li>FedML is now pip installable from PyPi repo.
-<li> Support for deployment to hyperscaler environment.
-<li>Support for deployment to SAP Business Technology Platform Kyma environment. 
-<li>Support for inferencing with hyperscaler deployed as well as Kyma deployed models.
-<li>Support for writing inferenced results back to SAP Datasphere.
-</ul>
-<br>
-
-## Solution Architecture
+### Solution Architecture - FedML Hyperscaler libraries
  
  ![ARD](/FedML_ARD.jpg)
  <br>
@@ -32,33 +41,24 @@ Here are some high level major feature additions in Version 2.0 of FedML:
  
 - SAP Datasphere tenant instance, with connectivity established to the remote data sources, and views exposed, that can be consumed by FedML. 
 
-- Access to corresponding Hyperscaler Machine learning environments with approriate configurations. See [Configuration](#configuration) section.
-<br>
+- Access to corresponding  Machine learning Platforms with appropriate configurations. See [Configuration](#configuration) section.
+
 
 ## Download and Installation 
 
-1. Try out examples from the **samples-notebooks** directory of corresponding Hyperscaler library 
-
-2. For setting up the remote models in SAP Datasphere to federate data from hyperscaler data stores for use with FedML , here are some Discovery Mission examples :
-
-- [Integrating Amazon Athena and SAP Datasphere](https://discovery-center.cloud.sap/missiondetail/3401/3441/)
-- [Integrating Google Big Query and SAP Datasphere](https://discovery-center.cloud.sap/missiondetail/3409/3449/)
-- [Integrating Azure Data Explorer and SAP Datasphere](https://discovery-center.cloud.sap/missiondetail/3433/3473/)
-
- <br>
+ Try out examples from the **samples-notebooks** directory of corresponding library folders
 
 ## Configuration 
-
+- For FedML (platform-independent) library specific pre-requisites, configuration and documentation, [please refer here](Datasphere/fedml-dsp.md) <br>
 - For AWS FedML library specific pre-requisites, configuration and documentation, [please refer here](AWS/fedml_aws.md) <br>
 - For GCP FedML library specific pre-requisites, configuration and documentation, [please refer here](GCP/fedml_gcp.md)<br>
 - For Azure FedML library specific pre-requisites, configuration and documentation, [please refer here](Azure/readme.md) <br>
 - For Databricks FedML library specific pre-requisites, configuration and documentation, [please refer here](Databricks/README.md)<br><br>
 
-
 ## Limitations 
 
 None
-  <br><br>
+  <br>
 
 ## How to obtain support 
 

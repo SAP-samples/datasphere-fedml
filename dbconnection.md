@@ -4,9 +4,11 @@ DbConnection class abstracts the connectivity to SAP Datasphere, data query, dat
 
 ## Pre-requisite:
 
-For Fedml-databricks only: SAP Datasphere config can be stored in a secure manner in the form of Databricks Secret - this step is optional, but recommended for security. <BR>
+config.json file present in main path
 
-**<u>SAP Datasphere config</u>**   
+If using fedml-databricks: SAP Datasphere config stored in a secure manner in the form of Databricks Secret.  <BR>
+
+**<u>SAP Datasphere config.json</u>**
 ```
 {
 
@@ -14,26 +16,25 @@ For Fedml-databricks only: SAP Datasphere config can be stored in a secure manne
     "port": <The port number of the database instance. Required>,
     "user": <The database user. Required>,
     "password": <The database user's password. Required>,
-    "schema": <The SAP Datasphere Space Schema. Optional>,
+    "schema": <The SAP Datasphere cloud Space Schema. Optional>,
     "encrypt": <"true" . Denotes an encrypted connection>,
     "sslValidateCertificate": <"false" . Specifies whether to validate the server's certificate>,
-    "disableCloudRedirect": < "true". Specifies if there should be a tenant redirection for a cloud instance),
-    "communicationTimeout": <"0". Value of 0 Disables any communicaiton Timeouts>,
+    "disableCloudRedirect": < "true". Specifies if there should be a tenant redirection for a cloud instance,
+    "communicationTimeout": <"0". Value of 0 Disables any communication Timeouts>,
     "autocommit": <"true". Sets auto commit to true for the database connection>,
     "sslUseDefaultTrustStore": <"true". Denotes the use of client's default trust store>
-}  
+}
 ```
 <br>
 
-**Setting up your SAP Datasphere config**  
-
-1. Navigate to the space management inside SAP Datasphere 
+**Setting up your SAP Datasphere config.json**
+1. Navigate to the space management inside SAP Datasphere
 <br>
 <img src="space_management.png" alt="space management" height="500">
 <br>
 2. Navigate to database users.
 
-![databaseusers](database_users.png)
+![databaseusers](./database_users.png)
 <br>
 3. Create a user if you don't already have one with Read and Write privileges.
 
@@ -43,22 +44,21 @@ For Fedml-databricks only: SAP Datasphere config can be stored in a secure manne
 
 ![userprivileges](user_privileges.png)
 
-Here you will find the following information for your SAP Datasphere config: <br>
+Here you will find the following information for your SAP Datasphere config.json: <br>
 - Database User Name --> `user`
 - Space Schema --> `schema`
 - Host Name --> `address`
 - Port --> `port`
 - Password --> `password`
 <br>
-
-5. Store the SAP Datasphere config in the form of Databricks secret. Use the SAP Datasphere config stored as a Databricks secret in the notebook to connect to SAP Datasphere.
+5. If you're using fedml-databricks: Store the SAP Datasphere config in the form of Databricks secret. Use the SAP Datasphere config stored as a Databricks secret in the notebook to connect to SAP Datasphere.
 
 ## Constructor
  
 **DBConnection(`'url=None'`, `'dict_obj=None'`)**<br>
 Parameters: <br>
 `'url':` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The url path of where to find the SAP Datasphere config file (config.json)<br>
-`'dict_obj':` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SAP Datasphere config in the form of a dictionary object. Please note this parameter is only available with FedML Databricks<br>
+`'dict_obj':` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SAP Datasphere config in the form of a dictionary object.<br>
 Examples: <br>
 `db = DbConnection(url='/dbfs/FileStore/config.json')`<br>
 `db = DbConnection(dict_obj=config_object)`
@@ -77,7 +77,7 @@ Example: <br>
 2. **get_table_size(`'table_name'`)**:<br> 
 Returns the count of rows in the existing schema object <br>
 Parameter: <br>
-`'table_name'` [(str](https://docs.python.org/3/library/stdtypes.html#str)): The name of the table.<br>
+`'table_name'` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The name of the table.<br>
 Example: <br>
 `db.get_table_size('TITANIC_VIEW')`
 <br> <br>
@@ -100,7 +100,7 @@ Example:<br>
 <br> <br>
 
 5. **get_data_with_headers_pyspark(`'table_name'`,`'size=1'`)**: <br>
-This function is only supported for FedML Databricks.
+This function is only supported for FedML Databricks and FedML DSP.
 Returns the data fetched from schema view as a PySpark DataFrame. <br>
 Parameters: <br> 
 `'table_name'` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The name of the table.<br>
@@ -142,7 +142,7 @@ Example:<br>
 <br><br>
 
 10. **execute_query_pyspark(`'query'`)**: <br> 
-This function is only supported for FedML Databricks.
+This function is only supported for FedML Databricks and FedML DSP.
 Executes the SQL Query and returns the data fetched as a PySpark DataFrame. <br>
 Parameter: <br> 
 `'query'`  ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SQL query to execute<br>
@@ -209,5 +209,25 @@ Parameter: <br>
 Example:<br>
 `db.update_table('test_table','col_a=10','col_b=20')`
 <br><br>
+    
+17. **get_data_with_headers_cudf(`'table_name'`,`'size=1'`)**: <br>
+This function is only supported for FedML DSP.
 
+Returns the data fetched from schema view as a GPU DataFrame. <br>
+Parameters: <br> 
+`'table_name'` ([str](https://docs.python.org/3/library/stdtypes.html#str)): The name of the table.<br>
+`'size'`  ([float](https://docs.python.org/3/library/functions.html#float)): Number of rows to fetch from the schema view. For example, size=1 fetches all the rows of the view, size=0.2 fetches 20% of the rows in the view.<br>
+Example:<br>
+`db.get_data_with_headers_cudf(table_name='IRIS_VIEW', size=1)`
+<br> <br>
+    
+18. **execute_query_cudf(`'query'`)**: <br> 
+This function is only supported for FedML DSP.
+
+Executes the SQL Query and returns the data fetched as a GPU DataFrame. <br>
+Parameter: <br> 
+`'query'`  ([str](https://docs.python.org/3/library/stdtypes.html#str)): The SQL query to execute<br>
+Example:<br>
+`db.execute_query_cudf('SELECT * FROM \"FEDMLTEST\".\"iris_view\"')`
+<br> <br>
 
