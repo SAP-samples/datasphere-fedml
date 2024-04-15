@@ -208,6 +208,8 @@ deployment_config =
 
 `endpoint = fedml.ai_core_deploy(deployment_config=deployment_config)`
 
+**Note:** our logger currently returns a `/v2/invocations` example endpoint for inferencing the deployed model. This endpoint value should be adapted to whatever is defined as the inference endpoint in your deployed container. Commonly, this is referred to as `/v2/predict` in [SAP AI Core inferencing tutorials](https://developers.sap.com/tutorials/ai-core-deploy.html).
+
 ### **Step 4**:
 Finally, after deployment is done, you can inference your model
 
