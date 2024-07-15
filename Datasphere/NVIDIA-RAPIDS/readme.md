@@ -18,4 +18,4 @@ Install the SAP FedML DSP library using pip as follows:
 
 ## Documentation and getting started
 
-For getting started with the SAP FedML DSP Library and for documentation and sample notebooks, please refer the SAP FedML DSP documentation [here](fedml-dsp.md), the DbConnection documentation [here](../dbconnection.md), and sample notebook [here](./sample-notebooks/).
+For getting started with the SAP FedML DSP Library and for documentation and sample notebooks, please refer the SAP FedML DSP documentation [here](../fedml-dsp.md), the DbConnection documentation [here](../../dbconnection.md), and sample notebook [here](./sample-notebooks/).
