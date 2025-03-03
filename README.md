@@ -1,4 +1,4 @@
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/data-warehouse-cloud-fedml)](https://api.reuse.software/info/github.com/SAP-samples/data-warehouse-cloud-fedml)
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/datasphere-fedml)](https://api.reuse.software/info/github.com/SAP-samples/datasphere-fedml)
 
 # FedML
 
