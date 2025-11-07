@@ -9,7 +9,7 @@ fedml_dsp currently supports the ability to deploy ml models to SAP AI Core
 Please note that to use the cupy and cuml functions, you must import DbConnection. This is done as:
 `from fedml-dsp import DbConnection`
 
-For more information regarding the DbConnection class, please refer to the [dbconnection READme](../../dbconnection.md)
+For more information regarding the DbConnection class, please refer to the [dbconnection readme](../dbconnection.md)
 
 # **Fedml class**
 
